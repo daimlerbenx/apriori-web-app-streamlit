@@ -82,5 +82,14 @@ def main():
         # Display plot
         plot(sorted_rules, method="graph", control=['antecedents', 'consequents'])
 
+        # Get suggestions based on association rules
+        engagement_suggestions = suggest_engagement_actions(sorted_rules)
+
+        # Display suggestions
+        st.write("Engagement Suggestions:")
+        engagement_suggestions = suggest_engagement_actions(sorted_rules, max_suggestions=3)
+        for suggestion in engagement_suggestions:
+            st.write(suggestion)
+
 if __name__ == '__main__':
     main()

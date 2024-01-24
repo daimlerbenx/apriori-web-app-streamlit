@@ -121,3 +121,26 @@ def plot(data, method, control):
         st.pyplot(fig)
     else:
         print("Unsupported plotting method")
+
+def suggest_engagement_actions(rules, max_suggestions=5):
+    suggestions = []
+
+    # Filter rules with lift
+    high_lift_rules = rules[rules['lift'] >= 1.0]
+
+    # Get unique antecedents and consequents from high confidence rules
+    unique_antecedents = high_lift_rules['antecedents'].unique()
+    unique_consequents = high_lift_rules['consequents'].unique()
+
+    # Suggest combinations of user engagement activities that tend to occur together
+    for antecedent in unique_antecedents:
+        for consequent in unique_consequents:
+            if antecedent != consequent:
+                suggestion = f"Suggest combining **{antecedent}** and **{consequent}** to boost user engagement."
+                suggestions.append(suggestion)
+                if len(suggestions) == max_suggestions:
+                    break
+        if len(suggestions) == max_suggestions:
+            break
+
+    return suggestions
