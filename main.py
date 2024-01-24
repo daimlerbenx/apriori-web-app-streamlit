@@ -52,15 +52,16 @@ def main():
     # Create binary matrix
     binary_matrix = create_binary_matrix(melted_df, ['content_id', 'ugc'])
 
-    # Get user input for minimum support
+    # Get user input for minimum support and confidence
     input_min_support = st.number_input("Enter minimum support:", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
+    input_min_confidence = st.number_input("Enter minimum confidence:", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
 
     # Perform Apriori algorithm
     frequent_itemsets = apriori(binary_matrix, min_support=input_min_support, use_colnames=True)
     sorted_frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 
     # Perform association rules
-    rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=1)
+    rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=input_min_confidence)
     
     if 'antecedents' in rules.columns:
         sorted_rules = rules.sort_values(by=['confidence', 'support'], ascending=[False, False])
