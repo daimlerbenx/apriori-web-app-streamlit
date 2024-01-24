@@ -117,7 +117,7 @@ def plot(data, method, control):
         node_labels = {node: f"{node}" for node in G.nodes}
         nx.draw_networkx_labels(G, pos, labels=node_labels, ax=ax)
 
-        ax.set_title("Network Graph (Confidence)")
+        ax.set_title("Network Graph")
         st.pyplot(fig)
     else:
         print("Unsupported plotting method")
