@@ -1,5 +1,3 @@
-import streamlit as st
-import openpyxl
 from library import *
 
 title = "Social Media User Engagement Measurement System"
@@ -54,7 +52,7 @@ def main():
 
     # Get user input for minimum support and confidence
     input_min_support = st.number_input("Enter minimum support:", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
-    input_min_confidence = st.number_input("Enter minimum confidence:", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
+    input_min_confidence = st.number_input("Enter minimum confidence:", min_value=0.0, max_value=1.0, value=1.00, step=0.01)
 
     # Perform Apriori algorithm
     frequent_itemsets = apriori(binary_matrix, min_support=input_min_support, use_colnames=True)
@@ -80,6 +78,9 @@ def main():
         selected_columns = ['antecedents', 'consequents', 'support', 'confidence', 'lift']
         st.write("Association Rules:")
         st.dataframe(sorted_rules[selected_columns], width=800)
+
+        # Display plot
+        plot(sorted_rules, method="graph", control=['antecedents', 'consequents'])
 
 if __name__ == '__main__':
     main()

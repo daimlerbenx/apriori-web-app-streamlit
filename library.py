@@ -58,9 +58,14 @@ No additional restrictions — You may not apply legal terms or technological me
 """
 import numpy as np
 from mlxtend.frequent_patterns import association_rules, apriori
+import streamlit as st
+import openpyxl
 import os
 import tkinter as tk
 from tkinter import filedialog
+import matplotlib.pyplot as plt
+import networkx as nx
+import streamlit as st
 
 def get_excel_file_path():
     root = tk.Tk()
@@ -79,3 +84,40 @@ def save_to_excel(df, output_path):
 
 def create_binary_matrix(df, columns):
     return pd.crosstab(df[columns[0]], df[columns[1]]).applymap(lambda x: 1 if x > 0 else 0)
+
+def plot(data, method, control):
+    if method == "scatter":
+        fig, ax = plt.subplots()
+        x_values = data[control[0]]
+        y_values = data[control[1]]
+        ax.scatter(x_values, y_values)
+        ax.set_xlabel(control[0])
+        ax.set_ylabel(control[1])
+        ax.set_title("Scatter Plot")
+        st.pyplot(fig)
+    elif method == "graph":
+        G = nx.Graph()
+        for index, row in data.iterrows():
+            G.add_edge(row['antecedents'], row['consequents'], confidence=row['confidence'])
+        
+        fig, ax = plt.subplots()
+        pos = nx.circular_layout(G)
+        
+        # Draw edges
+        edges = nx.draw_networkx_edges(G, pos, ax=ax)
+
+        # Draw nodes
+        nodes = nx.draw_networkx_nodes(G, pos, ax=ax)
+
+        # Draw labels on edges
+        edge_labels = {(u, v): f"{G[u][v]['confidence']:.2f}" for u, v in G.edges}
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, ax=ax)
+
+        # Draw node labels
+        node_labels = {node: f"{node}" for node in G.nodes}
+        nx.draw_networkx_labels(G, pos, labels=node_labels, ax=ax)
+
+        ax.set_title("Network Graph (Confidence)")
+        st.pyplot(fig)
+    else:
+        print("Unsupported plotting method")
