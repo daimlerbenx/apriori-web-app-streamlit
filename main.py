@@ -1,6 +1,6 @@
 from library import *
 
-st.set_page_config(page_title="SMUEMS", page_icon=":wave:")
+st.set_page_config(page_title="SMUEMS", page_icon="icon.png")
 
 title = "Social Media User Engagement Measurement System"
 developer = "Developed by Daimler Benz Alebaba and Dr. Suaini Sura"
