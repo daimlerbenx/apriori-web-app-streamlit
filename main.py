@@ -40,6 +40,9 @@ def main():
     first_column_name = df.columns[0]
     df.rename(columns={first_column_name: 'content_id'}, inplace=True)
 
+    # Get the 'content_id' column and rename field into content_(n)
+    df['content_id'] = 'content_' + (df['content_id'].index + 1).astype(str)
+
     # Transform into frequency data
     melted_df = pd.melt(df, id_vars=['content_id'], var_name='ugc', value_name='frequency')
     melted_df = melted_df.dropna(subset=['frequency'])
