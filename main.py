@@ -8,7 +8,7 @@ about = "Data Mining Web Application"
 
 st.markdown(
     f'<div style="text-align: center; font-size: xxx-large; font-weight: bold;">{title}</div>'
-    f'<div style="text-align: center; font-size: medium;">{developer}</div>',
+    f'<div style="text-align: center; font-size: medium;">{developer}</div>'
     f'<div style="text-align: center; font-size: medium; font-weight: bolder;">{about}</div>',
     unsafe_allow_html=True
 )
