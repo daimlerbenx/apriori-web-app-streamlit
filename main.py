@@ -4,7 +4,7 @@ st.set_page_config(page_title="SMUEMS", page_icon="icon.png")
 
 title = "Social Media User Engagement Measurement System"
 developer = "Developed by Daimler Benz Alebaba, Dr. Suaini Sura, and Dr. Nooralisa Mohd Tuah"
-about = "- Data Mining Web Application Powered with Apriori Algorithm -"
+about = "- Data Mining Web System Powered with Apriori Algorithm -"
 
 st.markdown(
     f'<div style="text-align: center; font-size: xxx-large; font-weight: bold;">{title}</div>'
