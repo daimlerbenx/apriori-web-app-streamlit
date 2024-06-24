@@ -1,4 +1,8 @@
 from library import *
+import pandas as pd
+import numpy as np
+import streamlit as st
+from mlxtend.frequent_patterns import apriori, association_rules
 
 st.set_page_config(page_title="SMUEMS", page_icon="icon.png")
 
@@ -13,21 +17,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Read data from Excel file
-def get_excel_file_path():
-    uploaded_file = st.file_uploader("Upload Excel File", type=["xlsx", "xls"])
-
-    if uploaded_file is not None:
-        return uploaded_file
-
-    return None
-
 # Define a function to format frozensets
 def format_frozenset(frozenset_obj):
     return ', '.join(map(str, frozenset_obj))
 
 def main():
-
     # Read data from Excel file
     excel_file = get_excel_file_path()
 
