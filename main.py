@@ -7,13 +7,22 @@ from mlxtend.frequent_patterns import apriori, association_rules
 st.set_page_config(page_title="SMUEMS", page_icon="icon.png")
 
 title = "Social Media User Engagement Measurement System"
-developer = "Developed by Daimler Benz Alebaba, Dr. Suaini Sura, and Dr. Nooralisa Mohd Tuah"
-about = "- Data Mining Web System Powered with Apriori Algorithm -"
+developer = "SYSTEM INSTRUCTION"
+about = "- STEP 1: Export Excel files from your Facebook Page"
+aboutt = "- STEP 2: Browse and insert minimum support & confidence"
 
 st.markdown(
     f'<div style="text-align: center; font-size: xxx-large; font-weight: bold;">{title}</div>'
     f'<div style="text-align: center; font-size: medium;">{developer}</div>'
-    f'<div style="text-align: center; font-size: medium;">{about}</div>',
+    f'<div style="text-align: center; font-size: medium;">{about}</div>'
+    f'<div style="text-align: center; font-size: medium;">i. In the Facebook Page profile dashboard, click on “Meta Business Suite” located in the left corner.</div>'
+    f'<div style="text-align: center; font-size: medium;">ii. Click “Insights”</div>'
+    f'<div style="text-align: center; font-size: medium;">iii. Click “Content”</div>'
+    f'<div style="text-align: center; font-size: medium;">iv. To select the date range, click the “arrow down” symbol, choose the first and last date, and then click “Update”. Next, click “Export Data” and then click “Generate.” The Excel file will be processed and downloaded automatically.</div>'
+    f'<br>'
+    f'<div style="text-align: center; font-size: medium;">{aboutt}</div>'
+    f'<div style="text-align: center; font-size: medium;">In the SMUEMS, click "Browse files" and select the Excel file you want to analyze. Next, enter preferred minimum support and confidence levels, and the system will display the user engagement patterns.</div>'
+    f'<br>',
     unsafe_allow_html=True
 )
 
@@ -87,7 +96,7 @@ def main():
         engagement_suggestions = suggest_engagement_actions(sorted_rules)
 
         # Display suggestions
-        st.write("Engagement Suggestions:")
+        st.write("Learning Pattern:")
         engagement_suggestions = suggest_engagement_actions(sorted_rules, max_suggestions=3)
         for suggestion in engagement_suggestions:
             st.write(suggestion)

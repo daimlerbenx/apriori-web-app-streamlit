@@ -66,15 +66,15 @@ def plot(data, method, control):
         ax.set_title("Scatter Plot")
         st.pyplot(fig)
     elif method == "graph":
-        G = nx.Graph()
+        G = nx.DiGraph()  # Use directed graph
         for index, row in data.iterrows():
             G.add_edge(row['antecedents'], row['consequents'], confidence=row['confidence'])
         
         fig, ax = plt.subplots()
         pos = nx.circular_layout(G)
         
-        # Draw edges
-        edges = nx.draw_networkx_edges(G, pos, ax=ax)
+        # Draw edges with arrows
+        edges = nx.draw_networkx_edges(G, pos, ax=ax, arrowstyle='-|>', arrowsize=10)
 
         # Draw nodes
         nodes = nx.draw_networkx_nodes(G, pos, ax=ax)
@@ -106,7 +106,7 @@ def suggest_engagement_actions(rules, max_suggestions=5):
     for antecedent in unique_antecedents:
         for consequent in unique_consequents:
             if antecedent != consequent:
-                suggestion = f"Suggest combining **{antecedent}** and **{consequent}** to boost user engagement."
+                suggestion = f"Mostly your user engagement with **{antecedent}** and **{consequent}**."
                 suggestions.append(suggestion)
                 if len(suggestions) == max_suggestions:
                     break
