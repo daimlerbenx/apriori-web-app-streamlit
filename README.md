@@ -1,6 +1,6 @@
 # Social Media User Engagement Measurement System (SMUEMS)
 
-Welcome to the Social Media User Engagement Measurement System (SMUEMS)! This tool helps you analyze user engagement patterns from your social media data using association rule mining techniques. 
+Welcome to the Social Media User Engagement Measurement System (SMUEMS)! This web app helps you analyze user engagement patterns from your social media data using association rule mining apriori algorithm techniques. 
 
 ## Overview
 
